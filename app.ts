@@ -58,10 +58,23 @@ const resolvers = {
   }
 }
 
+const schema = makeExecutableSchema({
+  resolvers,
+  typeDefs
+})
+
 const app = express()
 const port = 3000
-app.get("/", (_, res) => res.send("Hello World"))
-
-app.listen(port, () => {
-  console.log(`Application running on port ${port}.`)
-})
+// app.get("/", (_, res) => res.send("Hello World"))
+console.log("aaaaaaaaaaa"),
+  app.use("/graphql",
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    graphqlHTTP({
+      schema,
+      graphiql: true
+    })
+  )
+console.log("xxxxxxxxxxxxxxxxxxxx"),
+  app.listen(port, () => {
+    console.log(`Application running on port ${port}.`)
+  })
